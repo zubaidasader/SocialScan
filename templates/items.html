@@ -1,0 +1,58 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="../static/styles.css" /> -->
+    <title>Exploratory Spatio-temporal Analysis of Twitter Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="{{ url_for('static', path='/js/heatmap.min.js') }} "></script>
+    <script src=" {{ url_for('static', path='/js/leaflet-heatmap.js') }}  "></script>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+    <h1 style="font-size: 40;">Social Scan</h1>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <h2>Filter based on coordinates or date.</h2>
+        <!-- This is a form for submitting a search longitude, latitude, and date -->
+        <form id="form">
+            <label for="lat">Latitude:</label>
+            <input value="-90" type="number" id="lat" name="lat"><br>
+            <label for="long">Longitude:</label>
+            <input value="-180" type="number" id="long" name="long"><br>
+            <label for="distance">Distance:</label>
+            <input value="22078" type="number" id="distance" name="distance"><br>
+            <label for="date">Start Date:</label><br>
+            <input type="date" id="Sdate" name="Sdate"><br>
+            <label for="date">End Date:</label><br>
+            <input type="date" id="Edate" name="Edate"><br>
+        </form>
+    </div>
+
+    <!-- This is a form for submitting a search text -->
+    <form id="form" class="center-text">
+        <label for="text">Term:</label>
+        <span class="required">*</span>
+        <input value="" type="text" id="text" name="text" style=" width: 60%;" required>
+        <span> <button type="button" onclick="submitForm()">Submit</button>.
+        <span onclick="openNav()" class="filter">
+                Filter
+            </span>
+        </span>.
+        <span onclick="getTweets()" class="filter">Tweets</span>
+        <div id="tweets"> </div>
+    </form>
+
+    <!-- This is a div for displaying a heatmap on the page -->
+    <div class="heatmap" id="map-canvas" style="width: 100%; height: 100%">
+        <div id="map"></div>
+    </div>
+    <script src=" {{ url_for('static', path='/js/index.js') }}  "></script>
+</body>
+
+</html>
